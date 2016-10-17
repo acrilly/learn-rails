@@ -15,7 +15,8 @@ class ContactsController < ApplicationController
 
     # Validated the contact model instance using the validation requirements in the model
     if @contact.valid?
-      # TODO send message
+      # Send email
+      UserMailer.contact_email(@contact).deliver_now
       flash[:notice] = "Message sent from #{@contact.name}."
 
      # Redirect to the home page
